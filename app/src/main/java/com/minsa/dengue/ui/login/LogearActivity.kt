@@ -46,7 +46,6 @@ class LogearActivity : AppCompatActivity() {
         }
         */
 
-
     }
 
     private fun IniciarSession(){
@@ -86,8 +85,6 @@ class LogearActivity : AppCompatActivity() {
         if(response.equals("-1"))
         {
             Toast.makeText(this, "Usuario y/o contraseña incorrecta", Toast.LENGTH_SHORT).show()
-            //-- quitar cuando ya este recibiendo el dato del json
-
         }
         else
         {

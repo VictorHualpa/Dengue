@@ -22,4 +22,11 @@
         android:name="com.minsa.dengue.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_slideshow"
         tools:layout="@layout/fragment_slideshow" />
+
+    <fragment
+        android:id="@+id/nav_csalud"
+        android:name="com.minsa.dengue.ui.csalud.CsaludFragment"
+        android:label="@string/menu_csalud"
+        tools:layout="@layout/fragment_csalud" />
+
 </navigation>
