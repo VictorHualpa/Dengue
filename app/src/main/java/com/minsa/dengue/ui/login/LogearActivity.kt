@@ -19,6 +19,7 @@ import com.minsa.dengue.databinding.ActivityLogearBinding
 import com.minsa.dengue.global.Total
 import com.minsa.dengue.global.Total.Companion.nroversion
 import org.json.JSONArray
+import org.json.JSONObject
 
 class LogearActivity : AppCompatActivity() {
 
@@ -48,11 +49,82 @@ class LogearActivity : AppCompatActivity() {
 
     }
 
-    private fun IniciarSession(){
+    /*private fun IniciarSession(){
         //Eliminar este evento y usar el que se encuentra comentado
         startActivity(Intent(this, MainActivity::class.java))
         Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+    }*/
+    fun IniciarSession() {
+        var usuario = binding.etUsuario.text.toString()
+        var clave = binding.etClave.text.toString()
+
+        val queue = Volley.newRequestQueue(this)
+        val url = Total.rutaServicio + "Login/ValidarUser"
+
+        val jsonObject = JSONObject()
+        jsonObject.put("usuario", usuario)
+        jsonObject.put("clave", clave)
+
+        val stringRequest = object : StringRequest(
+            Request.Method.POST, url,
+            Response.Listener { response ->
+                Log.d("RESPUESTA", response)
+                evaluarInicioSesion(response.trim())
+            },
+            Response.ErrorListener { error ->
+                Log.e("ERROR", "Error en la solicitud: ${error.message}")
+            }
+        ) {
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+
+            override fun getBody(): ByteArray {
+                return jsonObject.toString().toByteArray()
+            }
+        }
+
+        queue.add(stringRequest)
     }
+
+    fun evaluarInicioSesion(response: String) {
+        try {
+            val jsonResponse = JSONObject(response)
+            val mensaje = jsonResponse.getString("msg")
+            val data = jsonResponse.getBoolean("data")
+
+            if (!data) {
+                Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
+            } else {
+                /*val jarray = JSONArray(response)
+                val objUsuario = jarray.getJSONObject(0)
+
+                // Obtener los datos del usuario si es necesario
+                val idempresaold = objUsuario.getString("idempresaold")
+                val idsedeold = objUsuario.getString("idsedeold")
+                val idSistema = objUsuario.getString("idSistema")
+                val Version = objUsuario.getString("Version")
+                val identeold = objUsuario.getString("identeold")
+
+                // Guardar los datos del usuario si es necesario
+                val sp = getSharedPreferences("spfMain", Context.MODE_PRIVATE)
+                val editor = sp.edit()
+                editor.putString("idempresaold", idempresaold)
+                editor.putString("idsedeold", idsedeold)
+                editor.putString("idSistema", idSistema)
+                editor.putString("Version", Version)
+                editor.putString("username", identeold)
+                editor.apply()
+                */
+                startActivity(Intent(this, MainActivity::class.java))
+                Toast.makeText(this, "Bienvenido", Toast.LENGTH_SHORT).show()
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Toast.makeText(this, "Error al procesar la respuesta del servidor", Toast.LENGTH_SHORT).show()
+        }
+    }
+
     /*
     private fun IniciarSession() {
         var usuario = binding.etUsuario.text.toString()
@@ -80,7 +152,7 @@ class LogearActivity : AppCompatActivity() {
         queue.add(stringRequest)
     }
 */
-    fun evaluarInicioSesion(response: String?)
+    /*fun evaluarInicioSesion(response: String?)
     {
         if(response.equals("-1"))
         {
@@ -118,7 +190,7 @@ class LogearActivity : AppCompatActivity() {
             }
 
         }
-    }
+    }*/
 
 
 }
