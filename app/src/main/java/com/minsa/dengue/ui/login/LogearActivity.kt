@@ -96,7 +96,8 @@ class LogearActivity : AppCompatActivity() {
             if (!data) {
                 Toast.makeText(this, mensaje, Toast.LENGTH_SHORT).show()
             } else {
-                /*val jarray = JSONArray(response)
+                /*
+                val jarray = JSONArray(response)
                 val objUsuario = jarray.getJSONObject(0)
 
                 // Obtener los datos del usuario si es necesario
