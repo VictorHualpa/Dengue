@@ -18,6 +18,11 @@
             android:title="@string/menu_slideshow" />
 
         <item
+            android:id="@+id/nav_medico"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="@string/menu_medico" />
+
+        <item
             android:id="@+id/nav_csalud"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="@string/menu_csalud" />

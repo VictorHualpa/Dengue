@@ -29,4 +29,10 @@
         android:label="@string/menu_csalud"
         tools:layout="@layout/fragment_csalud" />
 
+    <fragment
+        android:id="@+id/nav_medico"
+        android:name="com.minsa.dengue.ui.medico.MedicoFragment"
+        android:label="@string/menu_medico"
+        tools:layout="@layout/fragment_medico" />
+
 </navigation>

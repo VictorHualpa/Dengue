@@ -36,6 +36,8 @@
     <string name="menu_gallery">Agendar Visita</string>
     <string name="menu_slideshow">Reporte de Visitas</string>
     <string name="menu_csalud">Centros de Salud</string>
+    <string name="menu_medico">Registro de Médicos</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
