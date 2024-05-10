@@ -34,5 +34,10 @@
         android:name="com.minsa.dengue.ui.medico.MedicoFragment"
         android:label="@string/menu_medico"
         tools:layout="@layout/fragment_medico" />
+    <fragment
+        android:id="@+id/nav_listamedico"
+        android:name="com.minsa.dengue.ui.medico.ListarMedicoFragment"
+        android:label="@string/menu_medico"
+        tools:layout="@layout/fragment_listar_medico" />
 
 </navigation>

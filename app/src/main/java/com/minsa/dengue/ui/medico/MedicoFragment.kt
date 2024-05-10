@@ -39,6 +39,7 @@ class MedicoFragment : Fragment() {
         val root: View = binding.root
 
         val btnGrabar: Button = binding.btnGrabar
+
         btnGrabar.setOnClickListener {
             grabarRegistro()
         }
@@ -49,6 +50,7 @@ class MedicoFragment : Fragment() {
 
     private fun grabarRegistro() {
         //-- Validar
+
         //-- Grabar
 
         // Crear una cola de solicitudes
