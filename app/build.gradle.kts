@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("androidx.navigation.safeargs")
 }
 
 android {
@@ -56,4 +57,5 @@ dependencies {
 
     // Voley
     implementation ("com.android.volley:volley:1.2.1")
+
 }

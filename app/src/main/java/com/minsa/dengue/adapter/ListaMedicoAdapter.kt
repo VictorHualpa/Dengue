@@ -11,10 +11,23 @@ import com.minsa.dengue.R
 import com.minsa.dengue.entidad.Medico
 
 interface OnClickListener {
-    fun onClick(id: Int
+    fun onClick(
+        idTabla: String,
+        nombres: String,
+        apellidos: String,
+        idTipDoc: String,
+        nroDocumento: String,
+        especialidad: String,
+        telefono: String,
+        correo: String,
+        foto: String,
+        tipoAccion: String,
+        userAccion: String
     )
 }
-class ListaMedicoAdapter : RecyclerView.Adapter<ListaMedicoAdapter.MiViewHolder>() {
+
+class ListaMedicoAdapter(private val listener: OnClickListener) :
+    RecyclerView.Adapter<ListaMedicoAdapter.MiViewHolder>() {
     private var lista: ArrayList<Medico> = ArrayList()
 
     fun agregarItems(item: ArrayList<Medico>) {
@@ -42,10 +55,22 @@ class ListaMedicoAdapter : RecyclerView.Adapter<ListaMedicoAdapter.MiViewHolder>
         holder.setearValores(medicoItem)
 
         holder.btnEditar.setOnClickListener {
-         /*listener.onClick(
-             1
-         )*/
+            listener.onClick(
+                medicoItem.idMedico.toString(),
+                medicoItem.nombres,
+                medicoItem.apellidos,
+                medicoItem.idTipDoc.toString(),
+                medicoItem.nroDocumento,
+                medicoItem.especialidad,
+                medicoItem.telefono,
+                medicoItem.correo,
+                medicoItem.foto,
+                "2",
+                "U001"
+            )
         }
+
+
     }
 
     override fun getItemCount(): Int {

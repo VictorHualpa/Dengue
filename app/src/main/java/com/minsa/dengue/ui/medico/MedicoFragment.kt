@@ -23,6 +23,18 @@ import org.json.JSONObject
 
 class MedicoFragment : Fragment() {
 
+    private var idTabla: Int = 0
+    private lateinit var nombres: String
+    private lateinit var apellidos: String
+    private var idTipDoc: Int = 0
+    private lateinit var nroDocumento: String
+    private lateinit var especialidad: String
+    private lateinit var telefono: String
+    private lateinit var correo: String
+    private lateinit var foto: String
+    private lateinit var tipoAccion: String
+    private lateinit var userAccion: String
+
     private var _binding: FragmentMedicoBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +50,39 @@ class MedicoFragment : Fragment() {
 
         val root: View = binding.root
 
-        val btnGrabar: Button = binding.btnGrabar
+        //-- Argumento de la fila
+        idTabla = arguments?.getString("idTabla", "0")?.toInt() ?: 0
+        nombres = arguments?.getString("nombres", "").toString()
+        apellidos = arguments?.getString("apellidos", "").toString()
+        idTipDoc = arguments?.getString("idTipDoc", "0")?.toInt() ?: 0
+        nroDocumento = arguments?.getString("nroDocumento", "").toString()
+        especialidad = arguments?.getString("especialidad", "").toString()
+        telefono = arguments?.getString("telefono", "").toString()
+        correo = arguments?.getString("correo", "").toString()
+        foto = arguments?.getString("foto", "").toString()
+        apellidos = arguments?.getString("apellidos", "").toString()
+        tipoAccion = arguments?.getString("tipoAccion", "1").toString()
+        userAccion = arguments?.getString("userAccion", "").toString()
+
+        //Cajas de Textos
+
+        if (tipoAccion.equals("1")) {
+            tipoAccion = "1"
+            binding.lblMTitulo.text = "Ingresar"
+        } else {
+            binding.lblMTitulo.text = "Modificar"
+        }
+
+        //binding.cboMTipoDocumento.text =
+
+        binding.txtMdNroDocumento.setText(nroDocumento)
+        binding.txtMdNombre.setText(nombres)
+        binding.txtMApellidos.setText(apellidos)
+        binding.txtMEspecialidad.setText(especialidad)
+        binding.txtMTelefono.setText(telefono)
+        binding.txtMCorreo.setText(correo)
+
+        val btnGrabar: Button = binding.btnMGuardar
 
         btnGrabar.setOnClickListener {
             grabarRegistro()
@@ -49,29 +93,30 @@ class MedicoFragment : Fragment() {
     }
 
     private fun grabarRegistro() {
-        //-- Validar
 
-        //-- Grabar
-
-        // Crear una cola de solicitudes
         val queue = Volley.newRequestQueue(requireContext())
-
         // URL del servicio
         val url = Total.rutaServicio + "api/Medico/InserUpdate"
 
         // Crear el objeto JSON a enviar
         val jsonObject = JSONObject().apply {
-            put("idMedico", 0)
-            put("nombres", "Nombres")
-            put("apellidos", "string")
-            put("idTipDoc", 0) // 1: DNI , 2. pasaporte
-            put("nroDocumento", "string")
-            put("especialidad", "string")
-            put("telefono", "string")
-            put("correo", "string")
+            if (tipoAccion.equals("1")) {
+                put("idMedico", 0)
+            } else {
+                put("idMedico", idTabla.toString())
+            }
+            put("nombres", binding.txtMdNombre.text.toString())
+
+            put("apellidos", binding.txtMApellidos.text.toString())
+            put("idTipDoc", 1) // 1: DNI , 2. pasaporte
+            put("nroDocumento", binding.txtMdNroDocumento.text.toString())
+            put("especialidad", binding.txtMEspecialidad.text.toString())
+            put("telefono", binding.txtMTelefono.text.toString())
+            put("correo", binding.txtMCorreo.text.toString())
             put("foto", "string")
-            put("tipoAccion", 1) // 1-insertar 2-editar
-            put("userAccion", "string") // idusuario para auditoria
+            put("tipoAccion", tipoAccion) // 1-insertar 2-editar
+            put("userAccion", userAccion) // idusuario para auditoria
+
         }
 
         // Crear la solicitud POST
@@ -104,19 +149,34 @@ class MedicoFragment : Fragment() {
         val message = response.getString("message")
         val dataObject = response.getJSONObject("data")
 
-        if (status.equals(200)  and message.equals("exito")) {
+        if (status.equals(200) and message.equals("exito")) {
             mostrarMensaje("Se Registro Correctamente.")
         }
 
     }
 
 
-    fun mostrarMensaje(mensaje:String){
+    fun mostrarMensaje(mensaje: String) {
         val ventana = AlertDialog.Builder(requireContext())
         ventana.setTitle("Mensaje Informativo")
         ventana.setMessage(mensaje)
         ventana.setPositiveButton("Aceptar", DialogInterface.OnClickListener { dialog, which ->
-
+            val fragmentManager = requireActivity().supportFragmentManager
+            fragmentManager.popBackStack()
+            /*if (fragmentManager.backStackEntryCount > 0) {
+                // Si hay fragmentos en la pila de retroceso, popBackStack() elimina el fragmento actual y restaura el fragmento anterior
+                fragmentManager.popBackStack()
+            } else {
+                // Si no hay fragmentos en la pila de retroceso, simplemente cierra la actividad o ejecuta la acción deseada
+                requireActivity().finish()
+            }
+            if (fragmentManager.backStackEntryCount > 0) {
+                // Si hay fragmentos en la pila de retroceso, popBackStack() elimina el fragmento actual y restaura el fragmento anterior
+                fragmentManager.popBackStack()
+            } else {
+                // Si no hay fragmentos en la pila de retroceso, simplemente cierra la actividad o ejecuta la acción deseada
+                requireActivity().finish()
+            }*/
         })
         ventana.create().show()
     }
