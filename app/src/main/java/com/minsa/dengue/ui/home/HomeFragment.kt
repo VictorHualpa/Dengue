@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val tvNombre: TextView = binding.tvNombre
+        val tvNombre: TextView = binding.txtVPNroDoc
 
 
         return root

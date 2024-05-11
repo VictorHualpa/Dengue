@@ -8,64 +8,226 @@
     android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/outlinedTextField"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+    <TextView
+        android:id="@+id/lblVPTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Registrar Visitas"
+        android:textAlignment="center"
+        android:textColor="#2196F3"
+        android:textSize="24sp"
+        android:visibility="gone"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/lblvpPaciente"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Ingrese Nombre"
+        android:layout_marginTop="4dp"
+        android:background="#2196F3"
+        android:text="Datos del Paciente"
+        android:textAlignment="textStart"
+        android:textColor="#E6EBEF"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblVPTitulo" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilVPNroDoc"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="15dp"
+        android:hint="Nro. Documento"
+        app:helperText="Required*"
+
+        app:counterEnabled="true"
+        app:counterMaxLength="8"
+        app:helperTextTextColor="#E60C56"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/i_check_circle"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblvpPaciente"
+        app:layout_constraintWidth_percent="0.9"
+        app:startIconDrawable="@drawable/i_card">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvNombre"
+            android:id="@+id/txtVPNroDoc"
+            android:inputType="number"
+            android:maxLength="8"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="156dp" />
-
+            />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/outlinedTextField2"
+        android:id="@+id/tilVPFullname"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Ingrese Apellidos"
+        android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField">
-
-
+        app:layout_constraintTop_toBottomOf="@+id/tilVPNroDoc"
+        app:layout_constraintWidth_percent="0.9"
+        app:startIconDrawable="@drawable/ic_persona"
+        >
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvApellidos"
+            android:id="@+id/txtVPFullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="176dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="14dp" />
+            android:hint="Apellidos y Nombres" />
+    </com.google.android.material.textfield.TextInputLayout>
 
+
+    <Switch
+        android:id="@+id/switch1Off"
+        android:layout_width="248dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/swithborder"
+        android:minHeight="48dp"
+        android:text="Presenta Sintomas"
+        android:textAlignment="center"
+        android:textStyle="bold|normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.878"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilVPFullname" />
+
+    <ImageView
+        android:id="@+id/imgFoto1"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="15dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.158"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilVPFullname"
+        tools:src="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/lblvpVisitas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:background="#2196F3"
+        android:text="Programar Visita"
+        android:textAlignment="textStart"
+        android:textColor="#E6EBEF"
+        android:textSize="25sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch1Off" />
+
+    <Spinner
+        android:id="@+id/cboVPCentroSalud"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lblvpVisitas"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilVPFechaVisita"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cboVPCentroSalud"
+        app:layout_constraintWidth_percent="0.9"
+        app:startIconDrawable="@drawable/i_calendar"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtVPFechaVisita"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="date"
+            android:hint="Fecha de Visita" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tilVPHoraInicVisita"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="22dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilVPFechaVisita"
+        app:layout_constraintWidth_percent="0.4"
+        app:startIconDrawable="@drawable/i_time">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/txtVPHoraInicVisita"
+            android:inputType="time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Fecha de Visita" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/outlinedTextField3"
+        android:id="@+id/tilVPHoraFinVisita"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:hint="Ingrese Apellidos"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/outlinedTextField2">
-
+        app:layout_constraintTop_toBottomOf="@+id/tilVPFechaVisita"
+        app:layout_constraintWidth_percent="0.4"
+        app:startIconDrawable="@drawable/i_time">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/tvNrodocumento"
+            android:id="@+id/txtVPHoraFinVisita"
+            android:inputType="time"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="176dp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="14dp" />
-
+            android:hint="Fecha de Visita" />
     </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Spinner
+        android:id="@+id/cboVPMedico"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tilVPHoraFinVisita"
+        app:layout_constraintWidth_percent="0.9" />
+
+    <Button
+        android:id="@+id/btnVPGuardar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Guardar Visita"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cboVPMedico" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

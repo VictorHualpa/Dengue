@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/nav_gallery"
-        android:name="com.minsa.dengue.ui.gallery.GalleryFragment"
+        android:name="com.minsa.dengue.ui.csalud.AgendarFragment"
         android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/fragment_agendar" />
 
     <fragment
         android:id="@+id/nav_slideshow"
@@ -79,5 +79,9 @@
 
         </action>
     </fragment>
-
+    <fragment
+        android:id="@+id/OpVisitaAdd"
+        android:name="com.minsa.dengue.ui.gallery.VisitaFragment"
+        android:label="fragment_visita"
+        tools:layout="@layout/fragment_visita" />
 </navigation>
